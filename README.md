@@ -70,13 +70,22 @@ Once the job completes, your application will be available at `http://localhost:
 
 ### Examples
 
-Auction functionality:
+Auction functionality from CandidUI:
 
 ![auction_rust_tests_image](https://github.com/mervanerenci/auction_dapp_icp/assets/101268022/b79a0da3-158f-4252-a131-3ab37e890e2c)
 
 Currency conversion:
 
 ![auction_get_conversion](https://github.com/mervanerenci/auction_dapp_icp/assets/101268022/9b54b40a-80ea-4fdc-bcc1-741ab63b6a34)
+
+UI:
+![new_auction](https://github.com/mervanerenci/fullstack_auction_dapp_icp/assets/101268022/76ae1b71-a32a-4884-a1f3-378f792fa2ad)
+
+![auction_list](https://github.com/mervanerenci/fullstack_auction_dapp_icp/assets/101268022/e5c8dc80-e8ef-4ecb-8bda-74a36e6ed086)
+
+![need_tosign](https://github.com/mervanerenci/fullstack_auction_dapp_icp/assets/101268022/65da371f-92f1-4312-b9bf-a7a91df09506)
+
+
 
 
 
