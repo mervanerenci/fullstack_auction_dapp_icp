@@ -55,10 +55,27 @@ dfx start --background
 dfx deploy
 ```
 
-Once the job completes, your application will be available at `http://localhost:4943?canisterId={asset_canister_id}`. You can use generated CandidUI to test functions.
+Once the job completes, your application will be available at `http://localhost:4943?canisterId={asset_canister_id}`. 
+You can use generated CandidUI to test functions.
+
+If you have made changes to your backend canister, you can generate a new candid interface with
+
+```bash
+npm run generate
+```
+
+at any time. This is recommended before starting the frontend development server, and will be run automatically any time you run `dfx deploy`.
+
+If you are making frontend changes, you can start a development server with
+
+```bash
+npm start
+```
+
+Which will start a server at `http://localhost:8080`, proxying API requests to the replica at port 4943.
 
 ### Examples
-##### UI:
+#### UI:
 ![new_auction](https://github.com/mervanerenci/fullstack_auction_dapp_icp/assets/101268022/76ae1b71-a32a-4884-a1f3-378f792fa2ad)
 
 ![auction_list](https://github.com/mervanerenci/fullstack_auction_dapp_icp/assets/101268022/e5c8dc80-e8ef-4ecb-8bda-74a36e6ed086)
@@ -67,7 +84,7 @@ Once the job completes, your application will be available at `http://localhost:
 
 
 
-##### Auction functionality from CandidUI:
+#### Auction functionality from CandidUI:
 
 ![auction_rust_tests_image](https://github.com/mervanerenci/auction_dapp_icp/assets/101268022/b79a0da3-158f-4252-a131-3ab37e890e2c)
 
