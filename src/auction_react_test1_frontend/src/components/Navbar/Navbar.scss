@@ -1,0 +1,72 @@
+@import './base.scss';
+
+.nav {
+  box-sizing: border-box;
+  box-shadow: 0 10px 20px 8px rgba(0, 0, 0, .2);
+  height: 70px;
+  box-sizing: border-box;
+  background: $primary;
+  z-index: 100;
+  label,#toggle {
+    display: none;
+  }
+  .menu {
+    background: $primary;
+    display: flex;
+    height: 100%;
+    width: 40%;
+    margin-left: auto;
+    justify-content: space-around;
+    &_item {
+      box-sizing: border-box;
+      text-transform: uppercase;
+      cursor: pointer;
+      list-style: none;
+      clear: right;
+      text-decoration: none;
+      color: $text;
+      padding:0 20px;
+      line-height: 70px;
+      transition: all .3s ease;
+      &:hover {
+        color: $primary;
+        background: $text;
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .nav {
+    position: relative;
+    width: 100vw;
+    label {
+      display: block;
+      position: absolute;
+      right: 5%;
+      z-index: 1000;
+      cursor: pointer; 
+      img {
+        margin-top: 25px;
+      }
+    }
+    .menu {
+      position: fixed;
+      width: 100%;
+      box-sizing: border-box;
+      height: 70vh;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      clip-path: circle(1000px at 20% 0%);
+      transition: all 1s ease-out;
+      &_item {
+        margin: 0;
+      }
+    }
+    #toggle:checked + .menu {
+      clip-path: circle(100px at 90% -10%);
+    }
+  }
+}

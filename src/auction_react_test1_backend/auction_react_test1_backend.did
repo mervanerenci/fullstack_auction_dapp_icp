@@ -1,0 +1,50 @@
+type Item = record {
+    title: text;
+    description: text;
+    image: vec nat8;
+};
+
+type Bid = record {
+    price: nat64;
+    time: nat64;
+    originator: principal;
+};
+
+type Auction = record {
+    id: nat64;
+    item: Item;
+    bid_history: vec nat64;
+    end_time: nat64;
+    remaining_time: nat64;
+};
+
+type AuctionDetails = record {
+    item: Item;
+    bid_history: vec Bid;
+    end_time: nat64;
+};
+
+type AuctionId = nat64;
+
+type AuctionOverview = record {
+    id: AuctionId;
+    item: Item;
+};
+
+
+service : {
+    new_auction: (item: Item, duration: nat64) -> ();
+    get_auction: (id: nat64) -> (opt Auction) query;
+    make_bid: (id: AuctionId, price: nat64) -> (result: variant { Ok: null; Err: text });
+    end_auction: (nat64) -> (result: variant { Ok: null; Err: text });
+    get_auction_details: (id: AuctionId) -> (opt AuctionDetails) query;
+    get_auctions_overview: () -> (vec AuctionOverview) query;
+    get_active_auctions: () -> (vec AuctionOverview) query;
+    get_ended_auctions: () -> (vec AuctionOverview) query;
+    get_all_auctions: () -> (vec AuctionOverview) query;
+    get_all_bids: (id: AuctionId) -> (vec Bid) query;
+    get_highest_bid_details: (id: AuctionId) -> (opt Bid) query;
+    get_remaining_time: (id: AuctionId) -> (opt nat64) query;
+    get_conversion_to_usd: (from_currency: text, amount: float64) -> (text);
+}
+
