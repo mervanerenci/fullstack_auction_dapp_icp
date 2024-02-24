@@ -1,6 +1,6 @@
 # Fullstack Auction dApp on Internet Computer - Hackathon Project
 
-This is a Fullstack Auction Dapp with Rsut backend and React frontend built on the Internet Computer that allows users to create, bid on, and manage  auctions. 
+This is a Fullstack Auction Dapp with Rsut backend and React frontend built on the Internet Computer that allows users to create, bid on, and manage  auctions. Internet Identity is used for authorization.
 
 Conducting auctions on the decentralized platform ICP creates an immutable record of participants and the winning bidder. This provides verifiable documentation for high-value item sales or digital assets like NFTs, ensuring transparency and accountability throughout the transaction process.
 
