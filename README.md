@@ -40,8 +40,8 @@ This Auction dApp provides several functions:
 - `get_all_auctions() -> Vec<AuctionOverview>`: Retrieves a list of all auctions.
 - `get_all_bids(id: AuctionId) -> Vec<Bid>`: Retrieves all bids for the auction with the specified ID.
 - `get_highest_bid_details(id: AuctionId) -> Option<Bid>`: Retrieves the highest bid for the auction with the specified ID.
-- `get_remaining_time(id: AuctionId) -> Option<u64>`: Retrieves the remaining time (in seconds) for the auction with the specified ID.
-- `get_conversion_to_usd(from: String, amount: f64) -> String`: Converts a specified amount from a specified currency to USD.
+- `get_remaining_time(id: AuctionId) -> Option<u64>`: Retrieves the remaining time (in nanoseconds) for the auction with the specified ID.
+
 
 ## Running the project locally
 
