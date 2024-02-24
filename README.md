@@ -71,15 +71,6 @@ Once the job completes, your application will be available at `http://localhost:
 
 ![auction_rust_tests_image](https://github.com/mervanerenci/auction_dapp_icp/assets/101268022/b79a0da3-158f-4252-a131-3ab37e890e2c)
 
-Currency conversion:
-
-![auction_get_conversion](https://github.com/mervanerenci/auction_dapp_icp/assets/101268022/9b54b40a-80ea-4fdc-bcc1-741ab63b6a34)
-
-
-
-
-
-
 -----
 
 
