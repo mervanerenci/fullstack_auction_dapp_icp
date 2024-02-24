@@ -1,29 +1,46 @@
-# auction_react_test1
+# Fullstack Auction dApp on Internet Computer - Hackathon Project
 
-Welcome to your new auction_react_test1 project and to the internet computer development community. By default, creating a new project adds this README and some template files to your project directory. You can edit these template files to customize your project and to include your own code to speed up the development cycle.
+This is an Auction Dapp built on the Internet Computer that allows users to create, bid on, and manage  auctions. 
 
-To get started, you might want to explore the project directory structure and the default configuration file. Working with this project in your development environment will not affect any production deployment or identity tokens.
+Conducting auctions on the decentralized platform ICP creates an immutable record of participants and the winning bidder. This provides verifiable documentation for high-value item sales or digital assets like NFTs, ensuring transparency and accountability throughout the transaction process.
 
-To learn more before you start working with auction_react_test1, see the following documentation available online:
+## How it works
 
-- [Quick Start](https://internetcomputer.org/docs/current/developer-docs/setup/deploy-locally)
-- [SDK Developer Tools](https://internetcomputer.org/docs/current/developer-docs/setup/install)
-- [Rust Canister Development Guide](https://internetcomputer.org/docs/current/developer-docs/backend/rust/)
-- [ic-cdk](https://docs.rs/ic-cdk)
-- [ic-cdk-macros](https://docs.rs/ic-cdk-macros)
-- [Candid Introduction](https://internetcomputer.org/docs/current/developer-docs/backend/candid/)
+The canister uses a StableBTreeMap to store auctions. Each auction is identified by a unique ID. The auction data includes the item being auctioned, bid history, and the remaining time.
 
-If you want to start working on your project right away, you might want to try the following commands:
+When a user creates an auction, the canister creates a new entry in the StableBTreeMap. The canister also uses the `ic_cdk_timers::set_timer` function to schedule the `end_auction` function to be called after the specified duration when a new auction is created.
 
-```bash
-cd auction_react_test1/
-dfx help
-dfx canister --help
-```
+The `convert::convert_to_usd` function is used to convert a specified amount from a specified currency to USD. This function makes an HTTP call to an external service to perform the conversion. Platform is using USD as base currency for bidding. This function helps users to easily convert their local currency to USD before bidding. Please check `convert.rs` module.
+
+When a user bids on an item, the canister checks to see if the bid is higher than the current highest bid and if auction is ended or not.
+
+## Data Structures
+
+The dApp uses several data structures:
+
+- `Item`: Represents an item being auctioned. It has a title, description, and an image represented as a byte vector.
+- `Bid`: Represents a bid made on an item. It includes the bid price, the time the bid was made, and the originator of the bid.
+- `AuctionId`: A unique identifier for each auction.
+- `AuctionOverview`: Provides a summary of an auction, including its ID and the item being auctioned.
+- `AuctionDetails`: Provides detailed information about an auction, including the item, bid history, and remaining time.
+- `Auction`: Represents an auction. It includes the auction ID, the item being auctioned, the bid history, and the remaining time.
+
+## Functions
+
+This Auction dApp provides several functions:
+
+- `new_auction(item: Item, duration: u64)`: Creates a new auction with the specified item and duration. Duration is in seconds.
+- `get_auction(id: AuctionId) -> Option<Auction>`: Retrieves the auction with the specified ID.
+- `end_auction(id: AuctionId) -> Result<(), &'static str>`: Ends the auction with the specified ID. Only the canister itself can call this function.
+- `make_bid(id: AuctionId, price: u64) -> Result<(), &'static str>`: Makes a bid on the auction with the specified ID. The bid must be higher than the current highest bid.
+- `get_auction_details(id: AuctionId) -> Option<AuctionDetails>`: Retrieves detailed information about the auction with the specified ID.
+- `get_active_auctions() -> Vec<AuctionOverview>`: Retrieves a list of all active auctions.
+- `get_conversion_to_usd(from: String, amount: f64) -> String`:  Converts a specified amount from a specified currency to USD. 
+
 
 ## Running the project locally
 
-If you want to test your project locally, you can use the following commands:
+If you want to test project locally, you can use the following commands:
 
 ```bash
 # Starts the replica, running in the background
@@ -33,29 +50,31 @@ dfx start --background
 dfx deploy
 ```
 
-Once the job completes, your application will be available at `http://localhost:4943?canisterId={asset_canister_id}`.
+Once the job completes, your application will be available at `http://localhost:4943?canisterId={asset_canister_id}`. You can use generated CandidUI to test functions.
 
-If you have made changes to your backend canister, you can generate a new candid interface with
+### Examples
 
-```bash
-npm run generate
-```
+Auction functionality:
 
-at any time. This is recommended before starting the frontend development server, and will be run automatically any time you run `dfx deploy`.
+![auction_rust_tests_image](https://github.com/mervanerenci/auction_dapp_icp/assets/101268022/b79a0da3-158f-4252-a131-3ab37e890e2c)
 
-If you are making frontend changes, you can start a development server with
+Currency conversion:
 
-```bash
-npm start
-```
+![auction_get_conversion](https://github.com/mervanerenci/auction_dapp_icp/assets/101268022/9b54b40a-80ea-4fdc-bcc1-741ab63b6a34)
 
-Which will start a server at `http://localhost:8080`, proxying API requests to the replica at port 4943.
 
-### Note on frontend environment variables
 
-If you are hosting frontend code somewhere without using DFX, you may need to make one of the following adjustments to ensure your project does not fetch the root key in production:
+-----
 
-- set`DFX_NETWORK` to `ic` if you are using Webpack
-- use your own preferred method to replace `process.env.DFX_NETWORK` in the autogenerated declarations
-  - Setting `canisters -> {asset_canister_id} -> declarations -> env_override to a string` in `dfx.json` will replace `process.env.DFX_NETWORK` with the string in the autogenerated declarations
-- Write your own `createActor` constructor
+
+
+To learn more, see the following documentation available online:
+
+- [Quick Start](https://internetcomputer.org/docs/current/developer-docs/setup/deploy-locally)
+- [SDK Developer Tools](https://internetcomputer.org/docs/current/developer-docs/setup/install)
+- [Rust Canister Development Guide](https://internetcomputer.org/docs/current/developer-docs/backend/rust/)
+- [ic-cdk](https://docs.rs/ic-cdk)
+- [ic-cdk-macros](https://docs.rs/ic-cdk-macros)
+- [Candid Introduction](https://internetcomputer.org/docs/current/developer-docs/backend/candid/)
+
+
