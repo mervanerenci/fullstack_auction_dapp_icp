@@ -36,7 +36,23 @@ This Auction dApp provides several functions:
 - `get_auction_details(id: AuctionId) -> Option<AuctionDetails>`: Retrieves detailed information about the auction with the specified ID.
 - `get_active_auctions() -> Vec<AuctionOverview>`: Retrieves a list of all active auctions.
 - `get_conversion_to_usd(from: String, amount: f64) -> String`:  Converts a specified amount from a specified currency to USD. 
+# Functions
 
+This Auction dApp provides several functions:
+
+- `new_auction(item: Item, duration: u64)`: Creates a new auction with the specified item and duration. Duration is in seconds.
+- `get_auction(id: AuctionId) -> Option<Auction>`: Retrieves the auction with the specified ID.
+- `make_bid(id: AuctionId, price: u64) -> Result<(), &'static str>`: Makes a bid on the auction with the specified ID. The bid must be higher than the current highest bid.
+- `end_auction(id: AuctionId) -> Result<(), &'static str>`: Ends the auction with the specified ID. Only the canister itself can call this function.
+- `get_auction_details(id: AuctionId) -> Option<AuctionDetails>`: Retrieves detailed information about the auction with the specified ID.
+- `get_auctions_overview() -> Vec<AuctionOverview>`: Retrieves a list of  auctions overview.
+- `get_active_auctions() -> Vec<AuctionOverview>`: Retrieves a list of all active auctions.
+- `get_ended_auctions() -> Vec<AuctionOverview>`: Retrieves a list of all ended auctions.
+- `get_all_auctions() -> Vec<AuctionOverview>`: Retrieves a list of all auctions, regardless of their status.
+- `get_all_bids(id: AuctionId) -> Vec<Bid>`: Retrieves all bids for the auction with the specified ID.
+- `get_highest_bid_details(id: AuctionId) -> Option<Bid>`: Retrieves the highest bid for the auction with the specified ID.
+- `get_remaining_time(id: AuctionId) -> Option<u64>`: Retrieves the remaining time (in seconds) for the auction with the specified ID.
+- `get_conversion_to_usd(from: String, amount: f64) -> String`: Converts a specified amount from a specified currency to USD.
 
 ## Running the project locally
 
