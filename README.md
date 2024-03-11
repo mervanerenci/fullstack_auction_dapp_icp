@@ -1,4 +1,4 @@
-# Fullstack Auction dApp on Internet Computer - Hackathon Project
+# FairBid - a Fullstack Auction dApp on Internet Computer - Hackathon Project
 
 This is a Fullstack Auction Dapp with Rsut backend and React frontend built on the Internet Computer that allows users to create, bid on, and manage  auctions. Internet Identity is used for authorization.
 
